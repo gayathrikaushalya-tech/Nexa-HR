@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>NEXA HR | Employees</title>
+
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- Bootstrap Icons -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+
+    <style>
+
+        /* =========================================
+           EMPLOYEE PAGE
+        ========================================= */
+
+        body {
+            background: #f6f7fb;
+        }
+
+
+        .topbar {
+
+            height: 70px;
+
+            background: white;
+
+            border-bottom:
+                1px solid #e8e9f0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+        }
+
+
+        .topbar-brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-weight: 800;
+
+            color: #15162b;
+
+        }
+
+
+        .topbar-logo {
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #635bff,
+                    #8b5cf6
+                );
+
+        }
+
+
+        .user-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .user-avatar {
+
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #eeecff;
+
+            color: #635bff;
+
+            font-weight: 800;
+
+        }
+
+
+        .user-info strong {
+
+            display: block;
+
+            font-size: 13px;
+
+        }
+
+
+        .user-info span {
+
+            font-size: 11px;
+
+            color: #888;
+
+        }
+
+
+        /* =========================================
+           LAYOUT
+        ========================================= */
+
+        .page-wrapper {
+
+            display: flex;
+
+            min-height:
+                calc(100vh - 70px);
+
+        }
+
+
+        .sidebar {
+
+            width: 245px;
+
+            background: #17182f;
+
+            padding: 25px 15px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .sidebar-label {
+
+            color:
+                rgba(255,255,255,0.35);
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            padding: 10px 15px;
+
+        }
+
+
+        .sidebar-link {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px 15px;
+
+            margin-bottom: 5px;
+
+            border-radius: 10px;
+
+            color:
+                rgba(255,255,255,0.6);
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .sidebar-link:hover {
+
+            background:
+                rgba(255,255,255,0.07);
+
+            color: white;
+
+        }
+
+
+        .sidebar-link.active {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #635bff,
+                    #756cf5
+                );
+
+            color: white;
+
+        }
+
+
+        .sidebar-link i {
+
+            font-size: 17px;
+
+        }
+
+
+        .main-content {
+
+            flex: 1;
+
+            padding: 30px;
+
+            min-width: 0;
+
+        }
+
+
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
+
+        .page-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .page-header h1 {
+
+            margin: 0;
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+        }
+
+
+        .page-header p {
+
+            margin: 5px 0 0;
+
+            color: #858798;
+
+            font-size: 13px;
+
+        }
+
+
+        .add-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 17px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #635bff,
+                    #8b5cf6
+                );
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            box-shadow:
+                0 6px 18px
+                rgba(99,91,255,0.22);
+
+            transition: 0.2s;
+
+        }
+
+
+        .add-button:hover {
+
+            color: white;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           SUMMARY
+        ========================================= */
+
+        .mini-stat {
+
+            background: white;
+
+            border:
+                1px solid #eeeef4;
+
+            border-radius: 12px;
+
+            padding: 16px;
+
+        }
+
+
+        .mini-stat span {
+
+            display: block;
+
+            color: #9193a2;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            font-weight: 700;
+
+            letter-spacing: .6px;
+
+        }
+
+
+        .mini-stat strong {
+
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 22px;
+
+        }
+
+
+        /* =========================================
+           FILTER PANEL
+        ========================================= */
+
+        .filter-panel {
+
+            background: white;
+
+            border:
+                1px solid #eeeef4;
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .search-box {
+
+            position: relative;
+
+        }
+
+
+        .search-box i {
+
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color: #999baa;
+
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            height: 45px;
+
+            border:
+                1px solid #e7e8ef;
+
+            border-radius: 10px;
+
+            padding-left: 42px;
+
+            outline: none;
+
+            font-size: 13px;
+
+            background: #fafaff;
+
+        }
+
+
+        .search-box input:focus {
+
+            border-color: #635bff;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(99,91,255,.07);
+
+        }
+
+
+        .filter-select {
+
+            height: 45px;
+
+            border:
+                1px solid #e7e8ef;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            background: #fafaff;
+
+        }
+
+
+        /* =========================================
+           TABLE
+        ========================================= */
+
+        .employee-panel {
+
+            background: white;
+
+            border:
+                1px solid #eeeef4;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+        }
+
+
+        .table-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 20px;
+
+            border-bottom:
+                1px solid #eeeef4;
+
+        }
+
+
+        .table-header h5 {
+
+            margin: 0;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        .table-header span {
+
+            color: #999baa;
+
+            font-size: 11px;
+
+        }
+
+
+        .table-responsive {
+
+            min-height: 300px;
+
+        }
+
+
+        .employee-table {
+
+            margin: 0;
+
+        }
+
+
+        .employee-table th {
+
+            padding: 14px 18px;
+
+            background: #fafaff;
+
+            color: #858798;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+
+            border-bottom:
+                1px solid #eeeef4;
+
+            white-space: nowrap;
+
+        }
+
+
+        .employee-table td {
+
+            padding: 14px 18px;
+
+            vertical-align: middle;
+
+            border-bottom:
+                1px solid #f1f1f5;
+
+            font-size: 12px;
+
+        }
+
+
+        .employee-table tbody tr {
+
+            transition: .15s;
+
+        }
+
+
+        .employee-table tbody tr:hover {
+
+            background: #fafaff;
+
+        }
+
+
+        .employee-person {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+        }
+
+
+        .person-avatar {
+
+            width: 38px;
+            height: 38px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #eeecff;
+
+            color: #635bff;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+        }
+
+
+        .person-name {
+
+            font-weight: 700;
+
+            color: #292a3e;
+
+        }
+
+
+        .person-email {
+
+            color: #999baa;
+
+            font-size: 10px;
+
+            margin-top: 2px;
+
+        }
+
+
+        .badge-custom {
+
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+        }
+
+
+        .badge-permanent {
+
+            color: #16834b;
+
+            background: #e8f8ef;
+
+        }
+
+
+        .badge-hr {
+
+            color: #b36a00;
+
+            background: #fff3dd;
+
+        }
+
+
+        .badge-other {
+
+            color: #635bff;
+
+            background: #eeecff;
+
+        }
+
+
+        .department-badge {
+
+            color: #55576a;
+
+            background: #f0f1f5;
+
+        }
+
+
+        .action-buttons {
+
+            display: flex;
+
+            gap: 5px;
+
+        }
+
+
+        .action-btn {
+
+            width: 32px;
+            height: 32px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #f4f4f8;
+
+            color: #686a7c;
+
+            transition: .2s;
+
+        }
+
+
+        .action-btn:hover {
+
+            background: #eeecff;
+
+            color: #635bff;
+
+        }
+
+
+        .action-btn.delete:hover {
+
+            background: #fff0f0;
+
+            color: #dc2626;
+
+        }
+
+
+        /* =========================================
+           STATES
+        ========================================= */
+
+        .table-state {
+
+            min-height: 300px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #999baa;
+
+            text-align: center;
+
+        }
+
+
+        .table-state i {
+
+            font-size: 35px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .pagination-area {
+
+            padding: 15px 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            border-top:
+                1px solid #eeeef4;
+
+            font-size: 11px;
+
+            color: #888;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+
+                width: 70px;
+
+            }
+
+
+            .sidebar-label,
+            .sidebar-link span {
+
+                display: none;
+
+            }
+
+
+            .sidebar-link {
+
+                justify-content: center;
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .sidebar {
+
+                display: none;
+
+            }
+
+
+            .main-content {
+
+                padding: 18px;
+
+            }
+
+
+            .page-header {
+
+                align-items: flex-start;
+
+                gap: 15px;
+
+                flex-direction: column;
+
+            }
+
+
+            .table-header {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 5px;
+
+            }
+
+
+            .user-info {
+
+                display: none;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     TOPBAR
+========================================= -->
+
+<header class="topbar">
+
+
+    <div class="topbar-brand">
+
+        <div class="topbar-logo">
+
+            <i class="bi bi-people-fill"></i>
+
+        </div>
+
+        <span>NEXA HR</span>
+
+    </div>
+
+
+    <div class="user-area">
+
+        <div class="user-info text-end">
+
+            <strong id="userEmail">
+                Administrator
+            </strong>
+
+            <span>
+                HR Administrator
+            </span>
+
+        </div>
+
+
+        <div class="user-avatar">
+
+            <i class="bi bi-person-fill"></i>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     PAGE WRAPPER
+========================================= -->
+
+<div class="page-wrapper">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-label">
+            WORKSPACE
+        </div>
+
+
+        <a
+            href="dashboard.html"
+            class="sidebar-link">
+
+            <i class="bi bi-grid-1x2-fill"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <a
+            href="employees.html"
+            class="sidebar-link active">
+
+            <i class="bi bi-people"></i>
+
+            <span>Employees</span>
+
+        </a>
+
+
+        <div class="sidebar-label mt-4">
+            MANAGEMENT
+        </div>
+
+
+        <a
+            href="add-employee.html"
+            class="sidebar-link">
+
+            <i class="bi bi-person-plus"></i>
+
+            <span>Add Employee</span>
+
+        </a>
+
+
+        <a
+            href="employees.html"
+            class="sidebar-link">
+
+            <i class="bi bi-building"></i>
+
+            <span>Departments</span>
+
+        </a>
+
+
+        <div class="sidebar-label mt-4">
+            ACCOUNT
+        </div>
+
+
+        <a
+            href="#"
+            id="logoutButton"
+            class="sidebar-link">
+
+            <i class="bi bi-box-arrow-left"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Employee Directory
+                </h1>
+
+                <p>
+                    Manage and organize your entire workforce.
+                </p>
+
+            </div>
+
+
+            <a
+                href="add-employee.html"
+                class="add-button">
+
+                <i class="bi bi-plus-lg"></i>
+
+                Add Employee
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================
+             MINI STATISTICS
+        ================================== -->
+
+        <div class="row g-3 mb-3">
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="mini-stat">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong
+                        id="miniTotal">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="mini-stat">
+
+                    <span>
+                        Permanent
+                    </span>
+
+                    <strong
+                        id="miniPermanent">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="mini-stat">
+
+                    <span>
+                        HR
+                    </span>
+
+                    <strong
+                        id="miniHR">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="mini-stat">
+
+                    <span>
+                        Departments
+                    </span>
+
+                    <strong
+                        id="miniDepartments">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             FILTERS
+        ================================== -->
+
+        <div class="filter-panel">
+
+            <div class="row g-2">
+
+
+                <div class="col-lg-6">
+
+                    <div class="search-box">
+
+                        <i class="bi bi-search"></i>
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search by name, email, phone or designation...">
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-5 col-lg-3">
+
+                    <select
+                        id="departmentFilter"
+                        class="form-select filter-select">
+
+                        <option value="">
+                            All Departments
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-md-5 col-lg-2">
+
+                    <select
+                        id="typeFilter"
+                        class="form-select filter-select">
+
+                        <option value="">
+                            All Types
+                        </option>
+
+                        <option value="Permanent">
+                            Permanent
+                        </option>
+
+                        <option value="HR">
+                            HR
+                        </option>
+
+                        <option value="Contract">
+                            Contract
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-md-2 col-lg-1">
+
+                    <button
+                        id="refreshButton"
+                        class="btn btn-light w-100"
+                        style="height:45px;"
+                        title="Refresh">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             EMPLOYEE TABLE
+        ================================== -->
+
+        <div class="employee-panel">
+
+
+            <div class="table-header">
+
+                <div>
+
+                    <h5>
+                        All Employees
+                    </h5>
+
+                    <span id="resultText">
+                        Loading employees...
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <button
+                        id="clearFilters"
+                        class="btn btn-sm btn-light">
+
+                        <i class="bi bi-x-circle"></i>
+                        Clear filters
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="table-responsive">
+
+
+                <table
+                    class="table employee-table"
+                    id="employeeTable">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Employee
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Designation
+                            </th>
+
+                            <th>
+                                Joining Date
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Salary
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="employeeTableBody">
+
+                    </tbody>
+
+
+                </table>
+
+
+                <div
+                    id="tableState"
+                    class="table-state">
+
+                    <div
+                        class="spinner-border"
+                        style="color:#635bff;">
+                    </div>
+
+                    <div class="mt-3">
+                        Loading employees...
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="pagination-area">
+
+                <span id="paginationText">
+                    —
+                </span>
+
+                <span>
+                    NEXA HR Directory
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================
+     DELETE CONFIRMATION MODAL
+========================================= -->
+
+<div
+    class="modal fade"
+    id="deleteModal"
+    tabindex="-1">
+
+
+    <div
+        class="modal-dialog modal-dialog-centered">
+
+
+        <div class="modal-content"
+             style="border:none;border-radius:16px;">
+
+
+            <div class="modal-body text-center p-4">
+
+
+                <div
+                    style="
+                        width:55px;
+                        height:55px;
+                        margin:auto;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        border-radius:50%;
+                        background:#fff0f0;
+                        color:#dc2626;
+                        font-size:22px;
+                    ">
+
+                    <i class="bi bi-trash3"></i>
+
+                </div>
+
+
+                <h5 class="mt-3">
+                    Delete employee?
+                </h5>
+
+
+                <p
+                    class="text-muted"
+                    style="font-size:13px;">
+
+                    Are you sure you want to delete
+                    <strong id="deleteEmployeeName">
+                        this employee
+                    </strong>?
+
+                    This action cannot be undone.
+
+                </p>
+
+
+                <div class="d-flex gap-2 justify-content-center">
+
+                    <button
+                        type="button"
+                        class="btn btn-light"
+                        data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="confirmDeleteButton"
+                        class="btn btn-danger">
+
+                        Delete Employee
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- Bootstrap -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- API -->
+
+<script src="js/api.js"></script>
+
+
+<!-- Employee JavaScript -->
+
+<script src="js/employees.js"></script>
+
+
+</body>
+
+</html>
